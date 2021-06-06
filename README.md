@@ -56,7 +56,7 @@ def Send(idchat, massage, userchat):
 			}
 			Req = post('https://snaptik.app/action.php', data=data, headers=headers).text
 			print(Req)
-                        V = Req.split("mp4_source','cache_v3')")[1]
+			V = Req.split("mp4_source','cache_v3')")[1]
 			S = V.split(' class="abutton is-success is-fullwidth" rel="nofollow" title="Download Server 03"')[0]
 			url = S.split("href='")[1]
 			urllib.request.urlretrieve(url, 'TikTok.mp4')
