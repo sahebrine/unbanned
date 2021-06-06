@@ -31,7 +31,7 @@ def Send(idchat, massage, userchat):
 			S = {'document':open('Twitter.mp4', 'rb')}
 			url = f"https://api.telegram.org/bot{token}/Senddocument?chat_id={idchat}&caption=Welcome Baby"
 			send = post(url, files=S).text
-		elif 'vm.tiktok.com' in massage:
+		elif 'tiktok' in massage:
 			headers = {
 				"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
 				"cookie": "CONSENT=YES+srp.gws-20210526-0-RC2.fr+FX+335; ANID=AHWqTUlihWppnpTlpQlm0QeUTqIh-sC_TprSsbFFarvLXtk2cyKrzpxYujLgzIN_; NID=216=KD0vSIyFxNmbpPTjNzJSMi98W2fwlaVsRBqxIfADa0i8tZQg9_hvGtJkLEUeJBR2VfVEnrknUft4W_WmNSZEJL8cZD7dR6MV8YinMcbLVcL_qH2uiZCUrobFJeFsDCNBFcWK6RxYqbLTSG321G-lZFcCw1dgf6KlyqTsLm5MpkM; 1P_JAR=2021-06-03-02"
