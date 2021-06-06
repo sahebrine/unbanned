@@ -37,7 +37,6 @@ def Send(idchat, massage, userchat):
 				"cookie": "CONSENT=YES+srp.gws-20210526-0-RC2.fr+FX+335; ANID=AHWqTUlihWppnpTlpQlm0QeUTqIh-sC_TprSsbFFarvLXtk2cyKrzpxYujLgzIN_; NID=216=KD0vSIyFxNmbpPTjNzJSMi98W2fwlaVsRBqxIfADa0i8tZQg9_hvGtJkLEUeJBR2VfVEnrknUft4W_WmNSZEJL8cZD7dR6MV8YinMcbLVcL_qH2uiZCUrobFJeFsDCNBFcWK6RxYqbLTSG321G-lZFcCw1dgf6KlyqTsLm5MpkM; 1P_JAR=2021-06-03-02"
 			}
 			Req = get("https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LcEF-IUAAAAAH6OP3ec-gaJkt1uihzUvuZNpdD4&co=aHR0cHM6Ly9zbmFwdGlrLmFwcDo0NDM.&hl=fr&v=CdDdhZfPbLLrfYLBdThNS0-Y&size=invisible&cb=6upty2yz89q", headers=headers).text
-			print(Req)
 			q = Req.split('recaptcha-token" value="')[1]
 			name = q.split('">')[0]
 			data = {
@@ -46,7 +45,6 @@ def Send(idchat, massage, userchat):
 					"c": name
 			}
 			Req = post('https://recaptcha.net/recaptcha/api2/reload?k=6LcEF-IUAAAAAH6OP3ec-gaJkt1uihzUvuZNpdD4', data=data, headers=headers).text
-			print(Req)
 			Captcha = re.compile('rresp","(.*?)"').search(Req)[1]
 			headers = {
 				"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
@@ -57,7 +55,8 @@ def Send(idchat, massage, userchat):
 				"token": Captcha
 			}
 			Req = post('https://snaptik.app/action.php', data=data, headers=headers).text
-			V = Req.split("mp4_source','cache_v3')")[1]
+			print(Req)
+                        V = Req.split("mp4_source','cache_v3')")[1]
 			S = V.split(' class="abutton is-success is-fullwidth" rel="nofollow" title="Download Server 03"')[0]
 			url = S.split("href='")[1]
 			urllib.request.urlretrieve(url, 'TikTok.mp4')
