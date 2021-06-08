@@ -31,6 +31,20 @@ def Send(idchat, massage, userchat):
 			S = {'document':open('Twitter.mp4', 'rb')}
 			url = f"https://api.telegram.org/bot{token}/Senddocument?chat_id={idchat}&caption=Welcome Baby"
 			send = post(url, files=S).text
+		elif '@' in massage:
+			User = massage.split('@')[1]
+			headers = {
+				"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
+			}
+			Hi = get("https://igs.sf-converter.com/api/profile/" + User, headers=headers)
+			id = Hi.json()['result']['id']
+			Q = get("https://igs.sf-converter.com/api/stories/" + id, headers=headers)
+			for i in range(40):
+				url = Q.json()['result'][i]["video_versions"][i]['url']
+				urllib.request.urlretrieve(url, 'iNstagram.mp4')
+				S = {'document':open('iNstagram.mp4', 'rb')}
+				url = f"https://api.telegram.org/bot{token}/Senddocument?chat_id={idchat}&caption=Welcome Baby"
+				send = post(url, files=S).text
 		elif 'tiktok' in massage:
 			headers = {
 				"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
@@ -55,7 +69,6 @@ def Send(idchat, massage, userchat):
 				"token": Captcha
 			}
 			Req = post('https://snaptik.app/action.php', data=data, headers=headers).text
-			print(Req)
 			V = Req.split("mp4_source','cache_v3')")[1]
 			S = V.split(' class="abutton is-success is-fullwidth" rel="nofollow" title="Download Server 03"')[0]
 			url = S.split("href='")[1]
