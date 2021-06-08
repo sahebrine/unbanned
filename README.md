@@ -39,12 +39,15 @@ def Send(idchat, massage, userchat):
 			Hi = get("https://igs.sf-converter.com/api/profile/" + User, headers=headers)
 			id = Hi.json()['result']['id']
 			Q = get("https://igs.sf-converter.com/api/stories/" + id, headers=headers)
-			for i in range(40):
-				url = Q.json()['result'][i]["video_versions"][i]['url']
-				urllib.request.urlretrieve(url, 'iNstagram.mp4')
-				S = {'document':open('iNstagram.mp4', 'rb')}
-				url = f"https://api.telegram.org/bot{token}/Senddocument?chat_id={idchat}&caption=Welcome Baby"
-				send = post(url, files=S).text
+			try:
+				for i in range(40):
+					url = Q.json()['result'][i]["video_versions"][i]['url']
+					urllib.request.urlretrieve(url, 'iNstagram.mp4')
+					S = {'document':open('iNstagram.mp4', 'rb')}
+					url = f"https://api.telegram.org/bot{token}/Senddocument?chat_id={idchat}&caption=Welcome Baby"
+					send = post(url, files=S).text
+			except Exception as e:
+				id = id
 		elif 'tiktok' in massage:
 			headers = {
 				"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
