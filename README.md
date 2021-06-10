@@ -103,7 +103,7 @@ def Send(idchat, massage, userchat):
 				send = post(url, files=S).text
 			except Exception as e:
 				print(e)
-token = '1763438262:AAHI0lvjSae9Ss5xfaeK5bjZH6vNzm8S_g4'
+token = '1763438262:AAGDcTOHPi7HbKWFoyncU_dTKjC5mbVOGaY'
 url = f"https://api.telegram.org/bot{token}/getUpdates"
 while True:
 		Check = get(url)
